@@ -15,7 +15,7 @@ and manipulate the DB.
 - [Evaluation and Testing](#evaluation-and-testing)
 - [Built With](#built-with)
 - [Authors](#authors)
-- [Acknowledgements](#acknowledgements)
+- [Acknowledgments](#acknowledgments)
 
 ### Getting Started
 
