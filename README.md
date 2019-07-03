@@ -1,21 +1,32 @@
 <p align="center">
-<img width="600" height="150" src="png_files/Grade_Keeper2.png">
+<img width="600" height="150" src="png_files/Grade_Keeper2.png" title="Grade_Keeper_2">
 </p>
 
 **Grade Keeper** is a SQL database containing all information pertaining to the Employees, Students, and Instructors
-at a fictional university. Grade Keeper includes both the database and the necessary front end Java program to read 
+at a fictional university. **Grade Keeper** includes both the database and the necessary front end Java program to read 
 and manipulate the DB.
 
-## Getting Started
+## Table Of Contents
+- [Table Of Contents](#table-of-contents)
+- [Getting Started](#getting-started)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Environment Setup](#environment-setup)
+- [Evaluation and Testing](#evaluation-and-testing)
+- [Built With](#built-with)
+- [Authors](#authors)
+- [Acknowledgements](#acknowledgements)
+
+### Getting Started
 
 These instructions will get you a copy of our Grade Keeper project up and running on your local machine for evaluation
 and testing purposes. 
 
-## Prerequisites
+### Prerequisites
 
 An installation of MySQL.
 
-## Installation
+### Installation
 
 Import the included SQL file to build the data base.
 
@@ -24,7 +35,7 @@ Grade_Keeper_2.sql
 
 ```
 
-## Environment Setup
+### Environment Setup
 
 Compile the java program.
 
@@ -37,7 +48,7 @@ Run the java program
 java -cp lib/mariadb-java-client-2.4.2.jar:. SER322.jdbclab "jdbc:mariadb://localhost:3306/JDBClab1??autoReconnect=true&&useSSL=false" root SER322 org.mariadb.jdbc.Driver query1
 ```
 
-## Evaluation and Testing
+### Evaluation and Testing
 
 **Functions of the Java program**
 
@@ -53,7 +64,7 @@ java -cp lib/mariadb-java-client-2.4.2.jar:. SER322.jdbclab "jdbc:mariadb://loca
 * Select a list of students from specific courses
 * _Sort functionality included_
 
-## Built With
+### Built With
 
 * [MySQL](https://mysql.com)
 * [Eclipse](https://www.eclipse.org/ide/)
@@ -62,14 +73,14 @@ java -cp lib/mariadb-java-client-2.4.2.jar:. SER322.jdbclab "jdbc:mariadb://loca
 * [Google Docs](https://www.google.com/docs/about/)
 * [Pencil Project](https://pencil.evolvus.vn)
 
-## Authors
+### Authors
 
 * Jesse Quy
 * Cristina Gonzales
 * Kevin Halliwell
 * Brandon Kynsi
 
-## Acknowledgements
+### Acknowledgements
 
 ```
 TBD Will be updated before submitting
