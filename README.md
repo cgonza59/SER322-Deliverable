@@ -1,6 +1,8 @@
-# Grade_Keeper_2
+<p align="center">
+<img width="600" height="150" src="png_files/Grade_Keeper2.png">
+</p>
 
-Grade Keeper is a SQL database containing all information pertaining to the Employees, Students, and Instructors
+**Grade Keeper** is a SQL database containing all information pertaining to the Employees, Students, and Instructors
 at a fictional university. Grade Keeper includes both the database and the necessary front end Java program to read 
 and manipulate the DB.
 
