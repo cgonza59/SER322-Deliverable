@@ -80,7 +80,7 @@ java -cp lib/mariadb-java-client-2.4.2.jar:. SER322.jdbclab "jdbc:mariadb://loca
 * Kevin Halliwell
 * Brandon Kynsi
 
-### Acknowledgements
+### Acknowledgments
 
 ```
 TBD Will be updated before submitting
