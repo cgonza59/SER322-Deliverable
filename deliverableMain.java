@@ -1,4 +1,4 @@
-import java.sql.Connection;
+/*import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +8,7 @@ import java.sql.Statement;
  *
  * @author Brandon Kynsi
  */
-public class deliverableMain {
+/*public class deliverableMain {
     public static void main(String[] args) {
         ResultSet rs = null;
 	Statement stmt = null;
@@ -56,4 +56,4 @@ public class deliverableMain {
                 }
             }    
     }
-}
+}*/
