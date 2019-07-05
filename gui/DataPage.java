@@ -13,10 +13,30 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 
 import javax.swing.JComboBox;
+import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DataPage {
 
     public JFrame frame;
+    private JTable table;
+
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    DataPage window = new DataPage();
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
     private Connection conn;
     
@@ -81,9 +101,13 @@ public class DataPage {
           } );
         
         JComboBox comboBox = new JComboBox();
+        comboBox.setBounds(49, 81, 152, 27);
         comboBox.addItem("Ascending");
         comboBox.addItem("Descending");
-        comboBox.setBounds(49, 81, 152, 27);
         frame.getContentPane().add(comboBox);
+        
+        table = new JTable();
+        table.setBounds(49, 155, 784, 568);
+        frame.getContentPane().add(table);
     }
 }
