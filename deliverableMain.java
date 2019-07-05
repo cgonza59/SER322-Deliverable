@@ -68,7 +68,7 @@ public class deliverableMain {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    HomePage window = new HomePage();
+                    HomePage window = new HomePage(app.conn);
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();

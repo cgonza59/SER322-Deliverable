@@ -8,8 +8,10 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JRadioButton;
@@ -20,27 +22,24 @@ import javax.swing.JList;
 public class HomePage {
 
     public JFrame frame;
-
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    HomePage window = new HomePage();
-                    window.frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+    private Connection conn;
+    
+    private JButton btnSubmit;
+    private JRadioButton rdbtnAllData;
+    private JRadioButton rdbtnStudent;
+    private JRadioButton rdbtnCourses;
+    private JRadioButton rdbtnPrereq;
+    private JRadioButton rdbtnCourseEnrollmentList;
+    private JRadioButton rdbtnFindStudentGrades;
+    private JRadioButton rdbtnGrades;
+    private JRadioButton rdbtnFindStudentGpas;
+    private JRadioButton rdbtnFindCourseGrades;
 
     /**
      * Create the application.
      */
-    public HomePage() {
+    public HomePage(Connection connec) {
+        conn = connec;
         initialize();
     }
 
@@ -69,44 +68,129 @@ public class HomePage {
         lblInsert.setBounds(6, 174, 61, 16);
         frame.getContentPane().add(lblInsert);
         
-        JButton btnSubmit = new JButton("Submit");
+        btnSubmit = new JButton("Submit");
         btnSubmit.setBounds(393, 229, 117, 29);
         frame.getContentPane().add(btnSubmit);
         
-        JRadioButton rdbtnAllData = new JRadioButton("All Data");
+        btnSubmit.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent e) { 
+              submitButtonPressed();
+            } 
+          } );
+        
+        rdbtnAllData = new JRadioButton("All Data");
         rdbtnAllData.setBounds(16, 96, 141, 23);
         frame.getContentPane().add(rdbtnAllData);
         
-        JRadioButton rdbtnStudent = new JRadioButton("Student");
+        rdbtnStudent = new JRadioButton("Student");
         rdbtnStudent.setBounds(113, 96, 141, 23);
         frame.getContentPane().add(rdbtnStudent);
         
-        JRadioButton rdbtnCourses = new JRadioButton("Courses");
+        rdbtnCourses = new JRadioButton("Courses");
         rdbtnCourses.setBounds(208, 96, 141, 23);
         frame.getContentPane().add(rdbtnCourses);
         
-        JRadioButton rdbtnNewRadioButton = new JRadioButton("Prerequisites");
-        rdbtnNewRadioButton.setBounds(16, 148, 117, 23);
-        frame.getContentPane().add(rdbtnNewRadioButton);
+        rdbtnPrereq = new JRadioButton("Prerequisites");
+        rdbtnPrereq.setBounds(16, 148, 117, 23);
+        frame.getContentPane().add(rdbtnPrereq);
         
-        JRadioButton rdbtnCourseEnrollmentList = new JRadioButton("Course Enrollment List");
+        rdbtnCourseEnrollmentList = new JRadioButton("Course Enrollment List");
         rdbtnCourseEnrollmentList.setBounds(135, 148, 192, 23);
         frame.getContentPane().add(rdbtnCourseEnrollmentList);
         
-        JRadioButton rdbtnFindStudentGrades = new JRadioButton("Find Student Grades");
+        rdbtnFindStudentGrades = new JRadioButton("Find Student Grades");
         rdbtnFindStudentGrades.setBounds(333, 148, 158, 23);
         frame.getContentPane().add(rdbtnFindStudentGrades);
         
-        JRadioButton rdbtnGrades = new JRadioButton("Grades");
+        rdbtnGrades = new JRadioButton("Grades");
         rdbtnGrades.setBounds(16, 202, 141, 23);
         frame.getContentPane().add(rdbtnGrades);
         
-        JRadioButton rdbtnFindStudentGpas = new JRadioButton("Find Student GPAs");
+        rdbtnFindStudentGpas = new JRadioButton("Find Student GPAs");
         rdbtnFindStudentGpas.setBounds(515, 148, 158, 23);
         frame.getContentPane().add(rdbtnFindStudentGpas);
         
-        JRadioButton rdbtnFindCourseGrades = new JRadioButton("Find Course Grades");
+        rdbtnFindCourseGrades = new JRadioButton("Find Course Grades");
         rdbtnFindCourseGrades.setBounds(695, 148, 164, 23);
         frame.getContentPane().add(rdbtnFindCourseGrades);
+        
+        // Add buttons to group so only one can be selected.
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(btnSubmit);
+        bg.add(rdbtnAllData);
+        bg.add(rdbtnStudent);
+        bg.add(rdbtnPrereq);
+        bg.add(rdbtnCourses);
+        bg.add(rdbtnCourseEnrollmentList);
+        bg.add(rdbtnFindStudentGrades);
+        bg.add(rdbtnGrades);
+        bg.add(rdbtnFindStudentGpas);
+        bg.add(rdbtnFindCourseGrades);
+        
+        
+        
+        
+    }
+    
+    public void ViewDataPage(String data) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    DataPage window = new DataPage(data, conn);
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    
+    public void ViewPrereqs() {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    ViewPrequisites window = new ViewPrequisites(conn);
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    
+    public void InsertGrade() {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    SubmitNewGrade window = new SubmitNewGrade(conn);
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    
+    public void submitButtonPressed() {
+        if (rdbtnAllData.isSelected()) {
+            ViewDataPage("all");
+        } else if (rdbtnStudent.isSelected()) {
+            ViewDataPage("student");
+        } else if (rdbtnPrereq.isSelected()) {
+            ViewPrereqs();
+        } else if (rdbtnCourses.isSelected()) {
+            ViewDataPage("courses");
+        } else if (rdbtnCourseEnrollmentList.isSelected()) {
+            ViewDataPage("enrollment");
+        } else if (rdbtnFindStudentGrades.isSelected()) {
+            ViewDataPage("studentgrades");
+        } else if (rdbtnGrades.isSelected()) {
+            InsertGrade();
+        } else if (rdbtnFindStudentGpas.isSelected()) {
+            ViewDataPage("gpa");
+        } else if (rdbtnFindCourseGrades.isSelected()) {
+            ViewDataPage("coursegrades");
+            
+        } 
     }
 }
