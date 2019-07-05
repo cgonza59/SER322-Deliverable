@@ -5,33 +5,24 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 public class SubmitNewGrade {
 
-    private JFrame frame;
-
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    SubmitNewGrade window = new SubmitNewGrade();
-                    window.frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+    public JFrame frame;
+    
+    private Connection conn;
 
     /**
      * Create the application.
      */
-    public SubmitNewGrade() {
+    public SubmitNewGrade(Connection connec) {
+        conn = connec;
         initialize();
     }
 
@@ -80,6 +71,14 @@ public class SubmitNewGrade {
         JButton btnGoBack = new JButton("Go Back");
         btnGoBack.setBounds(6, 6, 117, 29);
         frame.getContentPane().add(btnGoBack);
+        
+        btnGoBack.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent e) { 
+             frame.setVisible(false);
+             frame.dispose();
+            } 
+          } );
+        
     }
 
 }

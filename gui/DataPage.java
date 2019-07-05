@@ -8,6 +8,10 @@ import javax.swing.JRadioButton;
 import javax.swing.JList;
 import javax.swing.JButton;
 import java.awt.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
@@ -15,7 +19,7 @@ import java.awt.event.ActionEvent;
 
 public class DataPage {
 
-    private JFrame frame;
+    public JFrame frame;
     private JTable table;
 
     /**
@@ -34,17 +38,20 @@ public class DataPage {
         });
     }
 
+    private Connection conn;
+    
     /**
      * Create the application.
      */
-    public DataPage() {
-        initialize();
+    public DataPage(String data, Connection connec) {
+        conn = connec;
+        initialize(data);
     }
 
     /**
      * Initialize the contents of the frame.
      */
-    private void initialize() {
+    private void initialize(String data) {
         frame = new JFrame();
         frame.setBounds(100, 100, 900, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,6 +92,13 @@ public class DataPage {
         JButton btnGoBack = new JButton("Go Back");
         btnGoBack.setBounds(6, 6, 117, 29);
         frame.getContentPane().add(btnGoBack);
+        
+        btnGoBack.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent e) { 
+             frame.setVisible(false);
+             frame.dispose();
+            } 
+          } );
         
         JComboBox comboBox = new JComboBox();
         comboBox.setBounds(49, 81, 152, 27);

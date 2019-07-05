@@ -5,13 +5,18 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 
 public class ViewPrequisites {
 
-    private JFrame frame;
+    private Connection conn;
+    public JFrame frame;
     private JTable table;
 
     /**
@@ -33,7 +38,8 @@ public class ViewPrequisites {
     /**
      * Create the application.
      */
-    public ViewPrequisites() {
+    public ViewPrequisites(Connection connec) {
+        conn = connec;
         initialize();
     }
 
@@ -54,6 +60,14 @@ public class ViewPrequisites {
         JButton btnGoBack = new JButton("Go Back");
         btnGoBack.setBounds(6, 6, 117, 29);
         frame.getContentPane().add(btnGoBack);
+        
+        btnGoBack.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent e) { 
+             frame.setVisible(false);
+             frame.dispose();
+            } 
+          } );
+        
         
         JLabel lblCourseId = new JLabel("Course ID:");
         lblCourseId.setBounds(62, 71, 79, 16);
