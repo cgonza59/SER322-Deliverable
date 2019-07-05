@@ -1,59 +1,85 @@
-/*import java.sql.Connection;
+import java.awt.EventQueue;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
+
+import gui.HomePage;
+
 
 /**
  *
  * @author Brandon Kynsi
  */
-/*public class deliverableMain {
-    public static void main(String[] args) {
-        ResultSet rs = null;
-	Statement stmt = null;
-	Connection conn = null;
-            if (args.length != 4)
-            {
-            	System.out.println("USAGE: java ser322.jdbclab jdbc:mysql://localhost/JDBCLabInit <user> <passwd> com.mysql.cj.jdbc.Driver query1");
-		System.exit(0);
-            }
-            String _url = "jdbc:mysql://localhost/JDBCLabInit";
-            try {
-		// Step 1: Load the JDBC driver
-		Class.forName("com.mysql.cj.jdbc.Driver");
+public class deliverableMain {
+    
+    /** The connection to MYSQL */
+    private Connection conn = null;
 
-		// Step 2: make a connection
-		conn = DriverManager.getConnection(_url, args[1], args[2]);
-		// Step 3: Create a statement
-		stmt = conn.createStatement();
-		// Step 4: Make a query
-		rs = stmt.executeQuery("SELECT emp.EMPNO, emp.ENAME, dept.DNAME\n" +
-                "FROM emp, dept\n" +
-                "WHERE emp.DEPTNO = dept.DEPTNO;");
-		// Step 5: Display the results
-		while (rs.next()) {
-                    System.out.print(rs.getInt(1) + "\t");
-                    System.out.print(rs.getString(2) + "\t ");
-                    System.out.println(rs.getString(3));
-                }
-            }
-            catch (Exception exc)
-            {
-		exc.printStackTrace();
-            }
-            finally {  // ALWAYS clean up your DB resources
-		try {
-                    if (rs != null)
-                    rs.close();
-                    if (stmt != null)
-                    stmt.close();
-                    if (conn != null)
-                    conn.close();
-                }
-		catch (SQLException se) {
-                    se.printStackTrace();
-                }
-            }    
+    public deliverableMain(String url, String user, String pwd, String driver) {
+        Properties connectionProps = new Properties();
+        connectionProps.put("user", user);
+        connectionProps.put("password", pwd);
+
+        try { 
+            Class.forName(driver);
+            //Add additional parameters to handle time zones.
+            conn = DriverManager.getConnection("jdbc:" + url + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                    connectionProps);
+            conn.setAutoCommit(true);
+            System.out.println("Connected to database");
+        } catch (SQLException e) {
+            System.out.println("ERROR: Could not connect to the database");
+            e.printStackTrace();
+            return;
+        } catch (ClassNotFoundException e) {
+            System.out.println("ERROR: Could not find class for the driver");
+            e.printStackTrace();
+            return;
+        }
     }
-}*/
+    
+    
+    /**
+     * Close the database.
+     */
+    public void close() {
+
+        if (conn != null)
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                System.out.println("Error closing the connection to the database");
+                e.printStackTrace();
+            }
+    }
+    
+    
+    public static void main(String[] args) {
+        String url = args[0];
+        String user = args[1];
+        String pwd = args[2];
+        String driver = args[3];
+        // Connect to the database.
+        deliverableMain app = new deliverableMain(url, user, pwd, driver);
+        
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    HomePage window = new HomePage();
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        
+        app.close();
+        
+    }
+
+}
+
+

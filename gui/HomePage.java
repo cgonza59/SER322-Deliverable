@@ -19,7 +19,7 @@ import javax.swing.JList;
 
 public class HomePage {
 
-    private JFrame frame;
+    public JFrame frame;
 
     /**
      * Launch the application.
