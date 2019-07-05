@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ViewFindCourseGrade {
 
@@ -49,6 +51,12 @@ public class ViewFindCourseGrade {
         frame.getContentPane().add(lblFindCourseGrades);
         
         JButton btnGoBack = new JButton("Go Back");
+        btnGoBack.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                frame.dispose();
+            }
+        });
         btnGoBack.setBounds(6, 6, 117, 29);
         frame.getContentPane().add(btnGoBack);
         
