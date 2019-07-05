@@ -9,10 +9,14 @@ import javax.swing.JList;
 import javax.swing.JButton;
 import java.awt.List;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DataPage {
 
     private JFrame frame;
+    private JTable table;
 
     /**
      * Launch the application.
@@ -83,9 +87,13 @@ public class DataPage {
         frame.getContentPane().add(btnGoBack);
         
         JComboBox comboBox = new JComboBox();
+        comboBox.setBounds(49, 81, 152, 27);
         comboBox.addItem("Ascending");
         comboBox.addItem("Descending");
-        comboBox.setBounds(49, 81, 152, 27);
         frame.getContentPane().add(comboBox);
+        
+        table = new JTable();
+        table.setBounds(49, 155, 784, 568);
+        frame.getContentPane().add(table);
     }
 }

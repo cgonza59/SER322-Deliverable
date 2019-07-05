@@ -7,10 +7,12 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
 
 public class ViewPrequisites {
 
     private JFrame frame;
+    private JTable table;
 
     /**
      * Launch the application.
@@ -45,8 +47,8 @@ public class ViewPrequisites {
         frame.getContentPane().setLayout(null);
         
         JLabel lblViewPrerequisites = new JLabel("View Prerequisites");
-        lblViewPrerequisites.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
         lblViewPrerequisites.setBounds(383, 30, 156, 16);
+        lblViewPrerequisites.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
         frame.getContentPane().add(lblViewPrerequisites);
         
         JButton btnGoBack = new JButton("Go Back");
@@ -64,6 +66,10 @@ public class ViewPrequisites {
         JButton btnSubmit = new JButton("Submit");
         btnSubmit.setBounds(392, 100, 117, 29);
         frame.getContentPane().add(btnSubmit);
+        
+        table = new JTable();
+        table.setBounds(49, 155, 784, 568);
+        frame.getContentPane().add(table);
     }
 
 }
