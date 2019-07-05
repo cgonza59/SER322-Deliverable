@@ -7,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ViewCourseEnrollmentList {
 
@@ -50,6 +52,12 @@ public class ViewCourseEnrollmentList {
         frame.getContentPane().add(lblNewLabel);
         
         JButton btnGoBack = new JButton("Go Back");
+        btnGoBack.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                frame.dispose();
+            }
+        });
         btnGoBack.setBounds(6, 1, 117, 29);
         frame.getContentPane().add(btnGoBack);
         
